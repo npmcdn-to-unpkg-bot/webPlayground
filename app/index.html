@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Count numbers: <output id="result"></output></p>
+<button onclick="hireWorker()">Hire Worker</button>
+<button onclick="killWorker()">Kill (fire) Worker</button>
+<script>
+var webWorker;
+
+function hireWorker() {
+    if(typeof(Worker) !== "undefined") {
+        if(typeof(webWorker) == "undefined") {
+            webWorker = new Worker("index.js");
+        }
+        webWorker.onmessage = function(event) {
+            document.getElementById("result").innerHTML = event.data;
+        };
+    } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
+    }
+}
+
+function killWorker() {
+    webWorker.terminate();
+    webWorker = undefined;
+}
+</script>
+
+</body>
+</html>
