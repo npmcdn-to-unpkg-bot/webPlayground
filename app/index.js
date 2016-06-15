@@ -1,15 +1,19 @@
-var count = 0;
+var webWorker;
 
-function fibSeq(n) {
-  if(n <= 2) {
-    return 1;
-  } else {
-    return this.fibSeq(n - 1) + this.fibSeq(n - 2);
-  }
-}
-function timedCount() {
-    postMessage(fibSeq(++count));
-    setTimeout("timedCount()",500);
+function hireWorker() {
+    if(typeof(Worker) !== "undefined") {
+        if(typeof(webWorker) == "undefined") {
+            webWorker = new Worker("fibGenerator.js");
+        }
+        webWorker.onmessage = function(event) {
+            document.getElementById("result").innerHTML = event.data;
+        };
+    } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
+    }
 }
 
-timedCount();
+function killWorker() {
+    webWorker.terminate();
+    webWorker = undefined;
+}
