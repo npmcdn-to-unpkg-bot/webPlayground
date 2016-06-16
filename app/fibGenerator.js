@@ -15,7 +15,7 @@ function fibSeq(n) {
 // http://9gag.com/gag/anYZ9Eo/my-code-works-but-i-don-t-know-why
 function runFib() {
     postMessage(fibSeq(++count));
-    // setTimeout("runFib()",500);
+    setTimeout("runFib()",1000);
 }
 
 runFib();
