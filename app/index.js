@@ -22,3 +22,27 @@ function killWorker() {
     webWorker.terminate();
     webWorker = undefined;
 }
+
+
+
+function bearType(type, time) {
+  var bear = type;
+  var roar = function () {
+    setTimeout(function() {
+      console.log("The " + bear + " bear says raw!");
+    }, time);
+  };
+  return roar;
+}
+
+
+function closuresAreFun() {
+  var bears = ["Griz", "Black", "Blue?", "Brown", "Pappa"];
+  var i = bears.length;
+
+  while(i--) {
+    bearType(bears[i], (i+1)*1000)();
+  }
+}
+
+closuresAreFun();
