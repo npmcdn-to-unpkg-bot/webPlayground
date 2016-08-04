@@ -24,10 +24,11 @@ function killWorker() {
 }
 
 
-
+// Takes the bear type and the time until we want to display it.
 function bearType(type, time) {
   var bear = type;
   var roar = function () {
+    // Set timeout to fake an async call. Just to show that it would work with one.
     setTimeout(function() {
       console.log("The " + bear + " bear says raw!");
     }, time);
@@ -35,12 +36,14 @@ function bearType(type, time) {
   return roar;
 }
 
-
+// Defines the vars and runs the while loop.
 function closuresAreFun() {
   var bears = ["Griz", "Black", "Blue?", "Brown", "Pappa"];
   var i = bears.length;
 
   while(i--) {
+    console.log(i);
+    // Pass in the bear and the time we want to wait until we display it.
     bearType(bears[i], (i+1)*1000)();
   }
 }
