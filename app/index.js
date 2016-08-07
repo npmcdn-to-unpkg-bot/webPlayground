@@ -1,3 +1,5 @@
+var ReactDOM = require('react-dom');
+
 // webWorker variable.
 var webWorker;
 
@@ -48,4 +50,9 @@ function closuresAreFun() {
   }
 }
 
-closuresAreFun();
+// closuresAreFun();
+
+ReactDOM.render(
+  <h1>Hello, world!</h1>,
+  document.getElementById('example')
+);
